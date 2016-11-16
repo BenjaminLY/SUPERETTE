@@ -33,6 +33,7 @@ public class ES {
 				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
+		sc.nextLine();
 		return saisie;
 	}
 	
@@ -53,6 +54,7 @@ public class ES {
 				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
+		sc.nextLine();
 		return saisie;
 	}
 	
@@ -73,6 +75,7 @@ public class ES {
 				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
+		sc.nextLine();
 		return saisie;
 	}
 	
@@ -93,11 +96,12 @@ public class ES {
 				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
+		sc.nextLine();
 		return saisie;
 	}
 	
 	public static String saisie(String msg) {
 		affiche(msg);
-		return sc.next();
+		return sc.nextLine();
 	}
 }

@@ -36,20 +36,15 @@ public class GestionTableDesArticles {
 		else System.out.println(tabArt.toString());
 	}
 	
-	public void ajouter(TableDesArticles tabArt) {
+	public void ajouter(TableDesArticles tabArt) throws Abandon {
+		ES.affiche("\n*** CREATION d'un nouvel ARTICLE ***\n");
 		Article<Integer> article= new Article<Integer>();
-		do {
-			try {
-				article= saisie(tabArt);
-				throw new Abandon();
-			} catch (Abandon ab) {
-				System.out.println("*** Article de code déjà existant ! ***");				
-			}
-		} while (article != null);
+		do { // BLY
+			article= saisie(tabArt);
+			if (article == null)
+				System.out.println("*** Article de code déjà existant ! ***");
+		} while (article == null);
 		tabArt.ajouter(article);
-//		Article<Integer> article= saisie(tabArt);
-//		if (article != null) tabArt.ajouter(article);
-//		else System.out.println("*** Article de code déjà existant ! ***");
 	}
 	
 	public void supprimer(TableDesArticles tabArt, TableDesCommandes tabCde) throws Abandon {
@@ -62,7 +57,6 @@ public class GestionTableDesArticles {
 	}
 	
 	public Article<Integer> saisie(TableDesArticles tabArt) throws Abandon {
-		System.out.println("\n*** CREATION d'un nouvel ARTICLE ***");
 		int code= ES.saisie("Quel code? ", 1);
 		
 		if (tabArt.retourner(code) == null) {
