@@ -58,42 +58,32 @@ public class ES {
 		return saisie;
 	}
 	
-	public static float saisie(String msg, float inf, float sup) throws Abandon {
+	public static float saisie(String msg, float inf, float sup) {
 		float saisie;
 		affiche(msg);
 		do {
 			try {
 				saisie= sc.nextFloat();				
 				if (saisie >= inf && saisie <= sup) break;
-				throw new Abandon();
 			} catch (InputMismatchException e) {
-				affiche("** SAISIE NON NUMERIQUE ...... RESSAISISSEZ **\n");
+				affiche("** SAISIE NON NUMERIQUE (Merci d'utiliser une virgule pour délimiter la partie décimale) ...... RESSAISISSEZ **\n");
 				sc.nextLine();
-			} catch (Abandon ab) {
-				char rep= saisieCarac(" Voulez-vous abandonner ? (O/N) ");
-				if (rep == 'o' || rep == 'O') throw ab;
-				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
 		sc.nextLine();
 		return saisie;
 	}
 	
-	public static float saisie(String msg, float inf) throws Abandon {
+	public static float saisie(String msg, float inf) {
 		float saisie;
 		affiche(msg);
 		do {
 			try {
 				saisie= sc.nextFloat();				
 				if (saisie >= inf) break;
-				throw new Abandon();
 			} catch (InputMismatchException e) {
-				affiche("** SAISIE NON NUMERIQUE ...... RESSAISISSEZ **\n");
+				affiche("** SAISIE NON NUMERIQUE (Merci d'utiliser une virgule pour délimiter la partie décimale) ...... RESSAISISSEZ **\n");
 				sc.nextLine();
-			} catch (Abandon ab) {
-				char rep= saisieCarac(" Voulez-vous abandonner ? (O/N) ");
-				if (rep == 'o' || rep == 'O') throw ab;
-				else affiche("** SAISIE HORS INTERVALLE ...... RESSAISISSEZ **\n");
 			}
 		} while (true);
 		sc.nextLine();

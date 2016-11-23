@@ -66,13 +66,13 @@ public class GestionUneCommande {
 	}
 	
 	public void afficher(TableDesArticles tabArt, Commande cde) {
-		if (cde.taille() == 0) System.out.println("*** COMMANDE VIDE !!! ***");
-		else System.out.print(cde.toString(tabArt));
+		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
+		else ES.affiche(cde.toString(tabArt));
 	}
 	
 	public void facturer(TableDesArticles tabArt, Commande cde) {
-		if (cde.taille() == 0) System.out.println("*** COMMANDE VIDE !!! ***");
-		else System.out.print(cde.facturer(tabArt));
+		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
+		else ES.affiche(cde.facturer(tabArt));
 	}
 	
 	public LigneDeCommande saisie(TableDesArticles tabArt) throws Abandon {
@@ -82,7 +82,7 @@ public class GestionUneCommande {
 			int quantite= ES.saisie("Quelle quantité ? ", 1);
 			return new LigneDeCommande(code,quantite);
 		} else {
-			System.out.print(" *** Ce code n'existe pas ? ");
+			ES.affiche(" *** Ce code n'existe pas ? ");
 			return null;
 		}
 	}

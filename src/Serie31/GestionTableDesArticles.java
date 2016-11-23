@@ -32,8 +32,8 @@ public class GestionTableDesArticles {
 	}
 	
 	public void afficher(TableDesArticles tabArt) {
-		if (tabArt.taille() == 0) System.out.println("*** Stock vide ! ***");
-		else System.out.println(tabArt.toString());
+		if (tabArt.taille() == 0) ES.affiche("*** Stock vide ! ***\n");
+		else ES.affiche(tabArt.toString() + "\n");
 	}
 	
 	public void ajouter(TableDesArticles tabArt) throws Abandon {
@@ -42,15 +42,15 @@ public class GestionTableDesArticles {
 		do { // BLY
 			article= saisie(tabArt);
 			if (article == null)
-				System.out.println("*** Article de code déjà existant ! ***");
+				ES.affiche("*** Article de code déjà existant ! ***\n");
 		} while (article == null);
 		tabArt.ajouter(article);
 	}
 	
 	public void supprimer(TableDesArticles tabArt, TableDesCommandes tabCde) throws Abandon {
-		if (tabArt.taille() == 0) System.out.print("*** Stock vide ! Pas de suppression possible. ***");
+		if (tabArt.taille() == 0) ES.affiche("*** Stock vide ! Pas de suppression possible. ***");
 		else {
-			System.out.println(); // BLY
+			ES.affiche(tabArt.cle() + "\n"); // BLY
 			int code= ES.saisie("Quel code voulez-vous supprimer? ", 1);
 			tabArt.supprimer(code, tabCde);		
 		}
@@ -61,7 +61,7 @@ public class GestionTableDesArticles {
 		
 		if (tabArt.retourner(code) == null) {
 			String designation= ES.saisie("Désignation du produit (minimum 8 caractères)? ");
-			float pu= ES.saisie("Prix unitaire? ", 0);
+			float pu= ES.saisie("Prix unitaire? ", (float)0);
 			return new Article<Integer>(code,designation,pu);
 		} else return null;
 	}

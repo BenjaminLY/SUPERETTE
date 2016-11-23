@@ -27,7 +27,7 @@ public class ClientS31 {
 			}
 		} while (choix != 0);
 		
-		System.out.println("Au revoir et à bientôt sur Superette");		
+		ES.affiche("Au revoir et à bientôt sur Superette");		
 	}
 	
 	public static int menuChoixGeneral() throws Abandon {

@@ -57,16 +57,16 @@ public class GestionDesCommandes {
 		if (tabCde.taille() != 0) { 
 			Commande cde= selectionCommande(tabCde); 
 			if (cde != null) tabCde.supprimer(cde.getNumCde());
-		} else System.out.println("** Aucune commande **"); 
+		} else ES.affiche("** Aucune commande **"); 
 	}
 	
 	public void afficher(TableDesCommandes tabCde) throws Abandon {
 		if (tabCde.taille() != 0) { 
 			Commande cde= selectionCommande(tabCde);
 			if (cde != null) 
-				System.out.print(cde.toString());
-			else System.out.print("** Cette commande n'existe pas. **"); 
-		} else System.out.println("** Aucune commande **"); 
+				ES.affiche(cde.toString());
+			else ES.affiche("** Cette commande n'existe pas. **"); 
+		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
 	public void editer(TableDesCommandes tabCde, TableDesArticles tabArt) throws Abandon {
@@ -75,26 +75,26 @@ public class GestionDesCommandes {
 			if (cde != null) {
 				GestionUneCommande guc= new GestionUneCommande();
 				guc.menuGeneral(tabArt, cde);
-			} else System.out.print("** Cette commande n'existe pas. **"); 
-		} else System.out.println("** Aucune commande **"); 
+			} else ES.affiche("** Cette commande n'existe pas. **"); 
+		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
 	public void afficherToutesLesCommandes(TableDesCommandes tabCde, TableDesArticles tabArt) {
-		if (tabCde.taille() != 0) System.out.print(tabCde.toString(tabArt));
-		else System.out.println("** Aucune commande **"); 
+		if (tabCde.taille() != 0) ES.affiche(tabCde.toString(tabArt));
+		else ES.affiche("** Aucune commande **\n"); 
 	}
 	
 	public void facturer(TableDesArticles tabArt, TableDesCommandes tabCde) throws Abandon {
 		if (tabCde.taille() != 0) { 
 			Commande cde= selectionCommande(tabCde);
 			if (cde != null)
-				System.out.println("\n" + cde.facturer(tabArt));
-			else System.out.print("** Cette commande n'existe pas. **");
-		} else System.out.println("** Aucune commande **");
+				ES.affiche("\n" + cde.facturer(tabArt) + "\n");
+			else ES.affiche("** Cette commande n'existe pas. **");
+		} else ES.affiche("** Aucune commande **\n");
 	}
 	
 	public Commande selectionCommande(TableDesCommandes tabCde) throws Abandon {
-		System.out.println(tabCde.cle());
+		ES.affiche(tabCde.cle() + "\n");
 		int numero= ES.saisie("Quelle commande ?", 1);
 		return tabCde.retourner(numero);
 	}
