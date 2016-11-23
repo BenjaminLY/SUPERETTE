@@ -1,10 +1,10 @@
-package Serie31;
+package Serie32;
 import Serie22.TableDesArticles;
 import Serie22.TableDesCommandes;
-import IConsole.ES;
+import IPane.ES;
 import MesExceptions.Abandon;
 
-public class ClientS31 {
+public class ClientS32 {
 	
 	public static void main(String[] args) {
 		TableDesArticles tabArt= new TableDesArticles();
