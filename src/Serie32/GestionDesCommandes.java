@@ -27,8 +27,6 @@ public class GestionDesCommandes {
 	public int menuChoix() throws Abandon {
 		String msg= "\n********  MENU GESTION DES COMMANDES  ********\n" +
 					"______________________________________________\n" +
-					"CREER UNE COMMANDE \t\t\t1\n" +
-					"CREER UNE bfifzf \t\t\t13\n" +
 					"CREER UNE COMMANDE ..........................1\n" +
 					"SUPPRIMER UNE COMMANDE ......................2\n" +
 					"AFFICHER UNE COMMANDE .......................3\n" +

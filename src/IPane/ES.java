@@ -11,7 +11,7 @@ public class ES {
 		JOptionPane.showMessageDialog(null, mes);
 	}
 	
-	public static char saisieChar(String mes) {
+	public static char saisieChar(String mes) { // Non utilisée
 		do {
 			String saisi= JOptionPane.showInputDialog(mes);
 			try { 
@@ -52,7 +52,7 @@ public class ES {
 		String saisi;
 		do {
 			try {
-				saisi= JOptionPane.showInputDialog(mes);
+				saisi= JOptionPane.showInputDialog(null,mes,titre,JOptionPane.NO_OPTION);
 				if (saisi == null) throw new Abandon();
 				if (saisi.equals("")) throw new Exception();
 				int valeur;
@@ -73,7 +73,7 @@ public class ES {
 		String saisi;
 		do {
 			try {
-				saisi= JOptionPane.showInputDialog(mes);
+				saisi= JOptionPane.showInputDialog(null,mes,titre,JOptionPane.NO_OPTION);
 				if (saisi == null) throw new Abandon();
 				if (saisi.equals("")) throw new Exception();
 				float valeur;
@@ -94,7 +94,7 @@ public class ES {
 		String saisi;
 		do {
 			try {
-				saisi= JOptionPane.showInputDialog(mes);
+				saisi= JOptionPane.showInputDialog(null,mes,titre,JOptionPane.NO_OPTION);
 				if (saisi == null) throw new Abandon();
 				if (saisi.equals("")) throw new Exception();
 				float valeur;
