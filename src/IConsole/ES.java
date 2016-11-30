@@ -94,4 +94,9 @@ public class ES {
 		affiche(msg);
 		return sc.nextLine();
 	}
+	
+	public static boolean saisieOuiNon(String msg) {
+		affiche(msg);
+		return true;
+	}
 }
