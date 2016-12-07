@@ -3,7 +3,8 @@ package IPane;
 import javax.swing.*;
 import MesExceptions.Abandon;
 
-public class ES {
+public class ES //implements MesInterfaces.EntreeSortie 
+{
 	
 	static final String titre= "SUPERETTE";
 
@@ -11,7 +12,7 @@ public class ES {
 		JOptionPane.showMessageDialog(null, mes);
 	}
 	
-	public static char saisieChar(String mes) { // Non utilisée
+	public static char saisieChar(String mes) {
 		do {
 			String saisi= JOptionPane.showInputDialog(mes);
 			try { 

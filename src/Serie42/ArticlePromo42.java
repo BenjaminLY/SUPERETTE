@@ -1,19 +1,19 @@
-package Serie41;
+package Serie42;
 
 import Serie22.ClientS22;
 
-public class ArticlePromo extends Article41<Integer> {
+public class ArticlePromo42 extends ArticleAbstrait<Integer> {
 	
 	private int quantiteMini;
 	private float reduction;
 	
-	public ArticlePromo(Integer code, String designation, float pu, int quantiteMini, float reduction) {
+	public ArticlePromo42(int code, String designation, float pu, int quantiteMini, float reduction) {
 		super(code, designation, pu);
 		this.quantiteMini= quantiteMini;
 		this.reduction= reduction;
 	}
 	
-	public ArticlePromo() {}
+	public ArticlePromo42() {}
 	
 	public int getQuantiteMini() {
 		return quantiteMini;
@@ -32,7 +32,7 @@ public class ArticlePromo extends Article41<Integer> {
 	}	
 	
 	public String toString() {
-		return super.toString() + "\t" + quantiteMini + "\t" + reduction;
+		return "\t" + getCode() + "\t" + getDesignation() + "\t" + getPu() + "\t" + quantiteMini + "\t" + reduction;
 	}
 	
 	public String facturer(int quantite) {
@@ -43,7 +43,7 @@ public class ArticlePromo extends Article41<Integer> {
 	}
 	
 	public float prixFacture(int quantite) {
-		if (quantite < quantiteMini) return super.prixFacture(quantite);
-		else return (super.prixFacture(quantite) * (1-reduction/100F));
+		if (quantite < quantiteMini) return getPu() * quantite;
+		else return getPu() * quantite * (1-reduction/100F);
 	}
 }

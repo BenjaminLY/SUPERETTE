@@ -29,7 +29,7 @@ public class Article41<TypeCode> {
 	public String toString() {
 		String str = "\t" + code + "\t" + designation + "\t";
 		if (designation.length() < 16) str+= "\t";
-		str += pu + "\n";
+		str += pu;
 		return str;
 	}
 	

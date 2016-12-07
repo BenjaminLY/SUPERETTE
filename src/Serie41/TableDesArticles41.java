@@ -8,7 +8,7 @@ public class TableDesArticles41 {
 	public TableDesArticles41() {
 		Article41<Integer> a1= new Article41<Integer>(2,"CARTE SON NVIDIA",23.8F);
 		Article41<Integer> a2= new Article41<Integer>(4,"CARTE RESEAU",24.7F);
-		ArticlePromo a3= new ArticlePromo(5,"CLE USB",12F, 5, 30F);
+		ArticlePromo a3= new ArticlePromo(5,"CLE USB SUPER 32GB",12F, 5, 30F);
 		Article41<Integer> a4= new Article41<Integer>(12,"BOITE 100CD",75.5F);
 		Article41<Integer> a5= new Article41<Integer>(18,"MEMOIRE FLASH",17F);
 		
@@ -56,20 +56,20 @@ public class TableDesArticles41 {
 	
 	public String toString() {
 		String st= 	"\n\t************  TABLE DES ARTICLES  ************\n" +
-					"\tCode\tDésignation\t\tPrix\n";
+					"\tCode\tDésignation\t\tPrix\tQté min\tRéduction\n";
 		for(Article41<Integer> art: tabArt.values()) 
-			st+= art.toString();
+			st+= art.toString() + "\n";
 		return st;
 	}
 	
 	public String toStringPromo() {
 		String st= 	"\n\t******  TABLE DES ARTICLES EN PROMOTION  ******\n" +
-					"\tCode\tDésignation\t\tPrix\n";
+					"\tCode\tDésignation\t\tPrix\tQté min\tRéduction\n";
 		// on pourrait vérifier sur la table est vide à ce niveau
 		
 		for(Article41<Integer> art: tabArt.values())  {
 			if (art instanceof ArticlePromo)
-				st+= art.toString();		
+				st+= art.toString() + "\n";		
 		}
 		return st;		
 	}

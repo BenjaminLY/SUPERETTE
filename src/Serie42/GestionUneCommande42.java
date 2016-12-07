@@ -1,20 +1,20 @@
-package Serie41;
+package Serie42;
 
 import IConsole.ES;
 import MesExceptions.Abandon;
 
-public class GestionUneCommande41 {
+public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Commande42,TableDesArticles42> {
 	
-	public void menuGeneral(TableDesArticles41 tabArt, Commande41 cde) throws Abandon {
+	public void menuGeneral(Commande42 cde, TableDesArticles42 tabArt) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
 			switch (choix) {
-			case 1: ajouter(tabArt, cde); break;
-			case 2: editer(tabArt, cde); break;
-			case 3: supprimer(tabArt, cde); break;
-			case 4: afficher(tabArt, cde); break;
-			case 5: facturer(tabArt, cde);
+			case 1: ajouter(cde,tabArt); break;
+			case 2: editer(cde,tabArt); break;
+			case 3: supprimer(cde,tabArt); break;
+			case 4: afficher(cde,tabArt); break;
+			case 5: facturer(cde,tabArt);
 			}
 		} while (choix != 0);
 	}
@@ -32,10 +32,10 @@ public class GestionUneCommande41 {
 		return ES.saisie(msg, 0, 5);
 	}
 	
-	public void ajouter(TableDesArticles41 tabArt, Commande41 cde) throws Abandon {
-		LigneDeCommande41 ldc= saisie(tabArt);
+	public void ajouter(Commande42 cde, TableDesArticles42 tabArt) throws Abandon {
+		LigneDeCommande42 ldc= saisie(tabArt);
 		if (ldc != null) {
-			LigneDeCommande41 ligne= cde.retourner(ldc.getCode());
+			LigneDeCommande42 ligne= cde.retourner(ldc.getCode());
 			if (ligne == null) {
 				cde.ajouter(ldc);
 			} else {
@@ -44,46 +44,46 @@ public class GestionUneCommande41 {
 		}
 	}
 
-	public void editer(TableDesArticles41 tabArt, Commande41 cde) throws Abandon {
-		afficher(tabArt, cde);
+	public void editer(Commande42 cde, TableDesArticles42 tabArt) throws Abandon {
+		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
-			LigneDeCommande41 ligne= cde.retournerAvecIndice(number - 1);
+			LigneDeCommande42 ligne= cde.retournerAvecIndice(number - 1);
 			int quantite= ES.saisie("Quelle quantité ? ", 1); // BLY
 			ligne.setQuantite(quantite);
 		}
 	}
 	
-	public void supprimer(TableDesArticles41 tabArt, Commande41 cde) throws Abandon {
-		afficher(tabArt, cde);
+	public void supprimer(Commande42 cde, TableDesArticles42 tabArt) throws Abandon {
+		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
 			cde.supprimer(number - 1);			
 		}
 	}
 	
-	public void afficher(TableDesArticles41 tabArt, Commande41 cde) {
+	public void afficher(Commande42 cde, TableDesArticles42 tabArt) {
 		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
 		else ES.affiche(cde.toString(tabArt));
 	}
 	
-	public void facturer(TableDesArticles41 tabArt, Commande41 cde) {
+	public void facturer(Commande42 cde, TableDesArticles42 tabArt) {
 		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
 		else ES.affiche(cde.facturer(tabArt));
 	}
 	
-	public LigneDeCommande41 saisie(TableDesArticles41 tabArt) throws Abandon {
+	public LigneDeCommande42 saisie(TableDesArticles42 tabArt) throws Abandon {
 		int code= ES.saisie("Quel code? ", 1);
-		Article41<Integer> art= tabArt.retourner(code);
+		ArticleAbstrait<Integer> art= tabArt.retourner(code);
 		
 		if (art != null) {
-			if (art instanceof ArticlePromo) {
-				String msg= "Article en PROMO !!\nA partir de " + ((ArticlePromo)art).getQuantiteMini() + " article(s), " +
-							"vous obtenez une réduction de " + ((ArticlePromo)art).getReduction() + "%\n";
+			if (art instanceof ArticlePromo42) {
+				String msg= "Article en PROMO !!\nA partir de " + ((ArticlePromo42)art).getQuantiteMini() + " article(s), " +
+							"vous obtenez une réduction de " + ((ArticlePromo42)art).getReduction() + "%\n";
 				ES.affiche(msg);
 			}
 			int quantite= ES.saisie("Quelle quantité ? ", 1);
-			return new LigneDeCommande41(code,quantite);
+			return new LigneDeCommande42(code,quantite);
 		} else {
 			ES.affiche(" *** Ce code n'existe pas ? ");
 			return null;

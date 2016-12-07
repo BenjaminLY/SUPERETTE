@@ -95,8 +95,8 @@ public class ES {
 		return sc.nextLine();
 	}
 	
-	public static boolean saisieOuiNon(String msg) {
-		affiche(msg);
-		return true;
+	public static boolean saisieOuiNon(String msg) { // BLY
+		char rep= saisieCarac(msg);
+		return rep == 'o' || rep == 'O';
 	}
 }
