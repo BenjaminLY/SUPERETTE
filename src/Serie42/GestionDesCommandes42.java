@@ -1,6 +1,6 @@
 package Serie42;
 
-import IConsole.ES;
+import IPane.ES;
 import MesExceptions.Abandon;
 
 public class GestionDesCommandes42 implements MesInterfaces.InterfaceGestion<TableDesCommandes42,TableDesArticles42> {

@@ -58,7 +58,7 @@ public class Commande42 implements MesInterfaces.InterfaceStructure<LigneDeComma
 	}
 	
 	public void supprimer(Integer code) {
-		cde.remove(code);
+		cde.remove((int)code);
 	}
 	
 	public LigneDeCommande42 retourner(Integer code) {

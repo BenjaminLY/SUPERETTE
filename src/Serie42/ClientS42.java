@@ -1,11 +1,12 @@
 package Serie42;
 
-import IConsole.ES;
+import IPane.ES;
 import MesExceptions.Abandon;
 
 public class ClientS42 {
 	
 	public static void main(String[] args) {
+		
 		TableDesArticles42 tabArt= new TableDesArticles42();
 		TableDesCommandes42 tabCde= new TableDesCommandes42();
 		GestionTableDesArticles42 gta= new GestionTableDesArticles42();

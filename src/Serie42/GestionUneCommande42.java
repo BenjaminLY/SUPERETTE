@@ -1,6 +1,6 @@
 package Serie42;
 
-import IConsole.ES;
+import IPane.ES;
 import MesExceptions.Abandon;
 
 public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Commande42,TableDesArticles42> {
@@ -58,7 +58,9 @@ public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Comm
 		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
-			cde.supprimer(number - 1);			
+			System.out.println(number);
+			cde.supprimer(number - 1);
+			
 		}
 	}
 	

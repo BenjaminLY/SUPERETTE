@@ -4,7 +4,7 @@ import Serie22.ClientS22;
 
 public class Article42 extends ArticleAbstrait<Integer> {
 	
-	public Article42(int code, String designation, float pu) {
+	public Article42(Integer code, String designation, float pu) {
 		super(code,designation,pu);
 	}
 	

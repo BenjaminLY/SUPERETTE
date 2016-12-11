@@ -7,7 +7,7 @@ public class ArticlePromo42 extends ArticleAbstrait<Integer> {
 	private int quantiteMini;
 	private float reduction;
 	
-	public ArticlePromo42(int code, String designation, float pu, int quantiteMini, float reduction) {
+	public ArticlePromo42(Integer code, String designation, float pu, int quantiteMini, float reduction) {
 		super(code, designation, pu);
 		this.quantiteMini= quantiteMini;
 		this.reduction= reduction;
