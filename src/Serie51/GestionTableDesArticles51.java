@@ -2,8 +2,28 @@ package Serie51;
 
 import IPane.ES;
 import MesExceptions.Abandon;
+import Connexions.ConnexionFichier;
 
 public class GestionTableDesArticles51 implements MesInterfaces.InterfaceGestion<TableDesArticles51,TableDesCommandes51> {
+	
+	ConnexionFichier<TableDesArticles51> fichArt;
+	
+	public GestionTableDesArticles51(String nomPhysique) {
+		fichArt= new ConnexionFichier<TableDesArticles51>(nomPhysique);
+	}
+	
+	public TableDesArticles51 recupererTab() {
+		TableDesArticles51 tabArt= fichArt.lire();
+		if (tabArt == null) {
+			ES.affiche("Fichier des articles nouveau ... TabART par défaut créé ...");
+			tabArt= new TableDesArticles51();
+		}
+		return tabArt;
+	}
+	
+	public void sauvegarder(TableDesArticles51 tabArt) {
+		fichArt.ecrire(tabArt);
+	}
 	
 	public void menuGeneral(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		int choix;

@@ -1,6 +1,6 @@
 package Serie51;
 
-public abstract class ArticleAbstrait<TypeCode> {
+public abstract class ArticleAbstrait<TypeCode> implements java.io.Serializable {
 	
 	private TypeCode code;
 	private String designation;

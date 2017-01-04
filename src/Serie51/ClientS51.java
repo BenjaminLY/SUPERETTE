@@ -7,9 +7,12 @@ public class ClientS51 {
 	
 	public static void main(String[] args) {
 		
-		TableDesArticles51 tabArt= new TableDesArticles51();
+		TableDesArticles51 tabArt;
+		//tabArt= new TableDesArticles51(); CXL
+		GestionTableDesArticles51 gta= new GestionTableDesArticles51("CATALOGUE.DAT");
+		tabArt= gta.recupererTab();
+		
 		TableDesCommandes51 tabCde= new TableDesCommandes51();
-		GestionTableDesArticles51 gta= new GestionTableDesArticles51();
 		GestionDesCommandes51 gdc= new GestionDesCommandes51();
 		
 		int choix;
@@ -19,6 +22,7 @@ public class ClientS51 {
 				switch (choix) {
 				case 1: gta.menuGeneral(tabArt, tabCde); break;
 				case 2: gdc.menuGeneral(tabCde, tabArt); break;
+				case 0: ES.affiche("** Sauvegarde du catalogue **\n");gta.sauvegarder(tabArt);break;
 				}
 			} catch (Abandon ab){ 
 				choix= 0;

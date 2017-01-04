@@ -1,7 +1,9 @@
 package Serie51;
-import java.util.TreeMap;
 
-public class TableDesArticles51 implements MesInterfaces.InterfaceStructure<ArticleAbstrait<Integer>,Integer> {
+import java.util.TreeMap;
+import java.io.Serializable;
+
+public class TableDesArticles51 implements MesInterfaces.InterfaceStructure<ArticleAbstrait<Integer>,Integer>, Serializable {
 	
 	private TreeMap<Integer, ArticleAbstrait<Integer>> tabArt;
 	
