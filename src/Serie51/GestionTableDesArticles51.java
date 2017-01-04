@@ -1,11 +1,11 @@
-package Serie42;
+package Serie51;
 
 import IPane.ES;
 import MesExceptions.Abandon;
 
-public class GestionTableDesArticles42 implements MesInterfaces.InterfaceGestion<TableDesArticles51,TableDesCommandes42> {
+public class GestionTableDesArticles51 implements MesInterfaces.InterfaceGestion<TableDesArticles51,TableDesCommandes51> {
 	
-	public void menuGeneral(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) throws Abandon {
+	public void menuGeneral(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
@@ -32,7 +32,7 @@ public class GestionTableDesArticles42 implements MesInterfaces.InterfaceGestion
 		return ES.saisie(msg, 0, 5);
 	}
 	
-	public void afficher(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) {
+	public void afficher(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) {
 		if (tabArt.taille() == 0) ES.affiche("*** Stock vide ! ***\n");
 		else ES.affiche(tabArt.toString() + "\n");
 	}
@@ -42,7 +42,7 @@ public class GestionTableDesArticles42 implements MesInterfaces.InterfaceGestion
 		else ES.affiche("\n** Stock vide ! **\n");
 	}
 	
-	public void ajouter(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) throws Abandon {
+	public void ajouter(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		ES.affiche("\n*** CREATION d'un nouvel ARTICLE ***\n");
 		ArticleAbstrait<Integer> article;
 		do {
@@ -53,7 +53,7 @@ public class GestionTableDesArticles42 implements MesInterfaces.InterfaceGestion
 		tabArt.ajouter(article);
 	}
 	
-	public void supprimer(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) throws Abandon {
+	public void supprimer(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		if (tabArt.taille() == 0) ES.affiche("*** Stock vide ! Pas de suppression possible. ***");
 		else {
 			ES.affiche(tabArt.cle() + "\n");
@@ -62,7 +62,7 @@ public class GestionTableDesArticles42 implements MesInterfaces.InterfaceGestion
 		}
 	}
 	
-	public void editerPromotion(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) throws Abandon {
+	public void editerPromotion(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		if (tabArt.taille() == 0) ES.affiche("*** Stock vide ! Pas d'édition possible. ***");
 		else {
 			ES.affiche(tabArt.cle() + "\n"); // BLY

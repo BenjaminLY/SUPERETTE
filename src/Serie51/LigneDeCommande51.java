@@ -1,18 +1,18 @@
-package Serie42;
+package Serie51;
 
 import Serie22.ClientS22;
 
-public class LigneDeCommande42 {
+public class LigneDeCommande51 {
 	
 	private int code;
 	private int quantite;
 	
-	public LigneDeCommande42(int code, int quantite) {
+	public LigneDeCommande51(int code, int quantite) {
 		this.code= code;
 		this.quantite= quantite;
 	}
 
-	public LigneDeCommande42(){}
+	public LigneDeCommande51(){}
 	
 	public int getCode() {
 		return code;

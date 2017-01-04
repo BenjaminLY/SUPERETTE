@@ -1,14 +1,14 @@
-package Serie42;
+package Serie51;
 
 import Serie22.ClientS22;
 
-public class Article42 extends ArticleAbstrait<Integer> {
+public class Article51 extends ArticleAbstrait<Integer> {
 	
-	public Article42(Integer code, String designation, float pu) {
+	public Article51(Integer code, String designation, float pu) {
 		super(code,designation,pu);
 	}
 	
-	public Article42(){}
+	public Article51(){}
 	
 	public String toString() {
 		String str = "\t" + getCode() + "\t" + getDesignation() + "\t";

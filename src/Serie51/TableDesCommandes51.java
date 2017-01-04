@@ -1,15 +1,15 @@
-package Serie42;
+package Serie51;
 import java.util.TreeMap;
 
-public class TableDesCommandes42 implements MesInterfaces.InterfaceStructure<Commande42,Integer> {
+public class TableDesCommandes51 implements MesInterfaces.InterfaceStructure<Commande51,Integer> {
 	
-	private TreeMap<Integer, Commande42> tabCde;
+	private TreeMap<Integer, Commande51> tabCde;
 	
-	public TableDesCommandes42() {
-		tabCde= new TreeMap<Integer, Commande42>();
+	public TableDesCommandes51() {
+		tabCde= new TreeMap<Integer, Commande51>();
 	}
 	
-	public void ajouter(Commande42 cde) {
+	public void ajouter(Commande51 cde) {
 		if (retourner(cde.getNumCde()) == null) tabCde.put(cde.getNumCde(), cde);
 	}
 	
@@ -17,19 +17,19 @@ public class TableDesCommandes42 implements MesInterfaces.InterfaceStructure<Com
 		if (retourner(numCde) != null) tabCde.remove(numCde);
 	}
 	
-	public Commande42 retourner(Integer numCde) {
+	public Commande51 retourner(Integer numCde) {
 		return tabCde.get(numCde);
 	}
 	
 	public void facturer(TableDesArticles51 tabArt) {
 		// BLY
-		for (Commande42 cde: tabCde.values())
+		for (Commande51 cde: tabCde.values())
 			cde.facturer(tabArt);
 	}
 	
 	public String toString(TableDesArticles51 tabArt) {
 		String st= 	"\n******** LISTES DES COMMANDES PASSEES ********\n";
-		for (Commande42 cde: tabCde.values())
+		for (Commande51 cde: tabCde.values())
 			st+= cde.toString(tabArt) + "*** \n";
 		return st;
 	}
@@ -46,7 +46,7 @@ public class TableDesCommandes42 implements MesInterfaces.InterfaceStructure<Com
 	}
 	
 	public void purge(int code) {
-		for(Commande42 cde: tabCde.values()) {
+		for(Commande51 cde: tabCde.values()) {
 			cde.purge(code);
 			if (cde.taille() != 0) ajouter(cde);
 			else supprimer(cde.getNumCde());

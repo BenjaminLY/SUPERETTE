@@ -1,11 +1,11 @@
-package Serie42;
+package Serie51;
 
 import IPane.ES;
 import MesExceptions.Abandon;
 
-public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Commande42,TableDesArticles51> {
+public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Commande51,TableDesArticles51> {
 	
-	public void menuGeneral(Commande42 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void menuGeneral(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
@@ -32,10 +32,10 @@ public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Comm
 		return ES.saisie(msg, 0, 5);
 	}
 	
-	public void ajouter(Commande42 cde, TableDesArticles51 tabArt) throws Abandon {
-		LigneDeCommande42 ldc= saisie(tabArt);
+	public void ajouter(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
+		LigneDeCommande51 ldc= saisie(tabArt);
 		if (ldc != null) {
-			LigneDeCommande42 ligne= cde.retourner(ldc.getCode());
+			LigneDeCommande51 ligne= cde.retourner(ldc.getCode());
 			if (ligne == null) {
 				cde.ajouter(ldc);
 			} else {
@@ -44,17 +44,17 @@ public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Comm
 		}
 	}
 
-	public void editer(Commande42 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void editer(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
 		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
-			LigneDeCommande42 ligne= cde.retournerAvecIndice(number - 1);
+			LigneDeCommande51 ligne= cde.retournerAvecIndice(number - 1);
 			int quantite= ES.saisie("Quelle quantité ? ", 1); // BLY
 			ligne.setQuantite(quantite);
 		}
 	}
 	
-	public void supprimer(Commande42 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void supprimer(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
 		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
@@ -64,17 +64,17 @@ public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Comm
 		}
 	}
 	
-	public void afficher(Commande42 cde, TableDesArticles51 tabArt) {
+	public void afficher(Commande51 cde, TableDesArticles51 tabArt) {
 		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
 		else ES.affiche(cde.toString(tabArt));
 	}
 	
-	public void facturer(Commande42 cde, TableDesArticles51 tabArt) {
+	public void facturer(Commande51 cde, TableDesArticles51 tabArt) {
 		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
 		else ES.affiche(cde.facturer(tabArt));
 	}
 	
-	public LigneDeCommande42 saisie(TableDesArticles51 tabArt) throws Abandon {
+	public LigneDeCommande51 saisie(TableDesArticles51 tabArt) throws Abandon {
 		int code= ES.saisie("Quel code? ", 1);
 		ArticleAbstrait<Integer> art= tabArt.retourner(code);
 		
@@ -85,7 +85,7 @@ public class GestionUneCommande42 implements MesInterfaces.InterfaceGestion<Comm
 				ES.affiche(msg);
 			}
 			int quantite= ES.saisie("Quelle quantité ? ", 1);
-			return new LigneDeCommande42(code,quantite);
+			return new LigneDeCommande51(code,quantite);
 		} else {
 			ES.affiche(" *** Ce code n'existe pas ? ");
 			return null;

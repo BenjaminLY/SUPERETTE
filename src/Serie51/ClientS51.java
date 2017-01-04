@@ -1,16 +1,16 @@
-package Serie42;
+package Serie51;
 
 import IPane.ES;
 import MesExceptions.Abandon;
 
-public class ClientS42 {
+public class ClientS51 {
 	
 	public static void main(String[] args) {
 		
 		TableDesArticles51 tabArt= new TableDesArticles51();
-		TableDesCommandes42 tabCde= new TableDesCommandes42();
-		GestionTableDesArticles42 gta= new GestionTableDesArticles42();
-		GestionDesCommandes42 gdc= new GestionDesCommandes42();
+		TableDesCommandes51 tabCde= new TableDesCommandes51();
+		GestionTableDesArticles51 gta= new GestionTableDesArticles51();
+		GestionDesCommandes51 gdc= new GestionDesCommandes51();
 		
 		int choix;
 		do {

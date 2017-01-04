@@ -1,11 +1,11 @@
-package Serie42;
+package Serie51;
 
 import IPane.ES;
 import MesExceptions.Abandon;
 
-public class GestionDesCommandes42 implements MesInterfaces.InterfaceGestion<TableDesCommandes42,TableDesArticles51> {
+public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<TableDesCommandes51,TableDesArticles51> {
 	
-	public void menuGeneral(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void menuGeneral(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
@@ -35,68 +35,68 @@ public class GestionDesCommandes42 implements MesInterfaces.InterfaceGestion<Tab
 		return ES.saisie(msg, 0, 6);
 	}
 	
-	public void ajouter(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) throws Abandon {
-		Commande42 cde= new Commande42();
+	public void ajouter(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
+		Commande51 cde= new Commande51();
 		
 		// attribution numero de commande et ajout dans stock
 		int numero= premierNumeroDispo(tabCde);
 		cde.setNumCde(numero);
 		tabCde.ajouter(cde);
 		
-		GestionUneCommande42 guc= new GestionUneCommande42();
+		GestionUneCommande51 guc= new GestionUneCommande51();
 		guc.menuGeneral(cde, tabArt);
 		if (cde.taille() == 0) { // Supp commande du stock si vide
 			tabCde.supprimer(numero); 
 		}
 	}
 	
-	public void supprimer(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void supprimer(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande42 cde= selectionCommande(tabCde); 
+			Commande51 cde= selectionCommande(tabCde); 
 			if (cde != null) tabCde.supprimer(cde.getNumCde());
 		} else ES.affiche("** Aucune commande **"); 
 	}
 	
-	public void afficher(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void afficher(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande42 cde= selectionCommande(tabCde);
+			Commande51 cde= selectionCommande(tabCde);
 			if (cde != null) 
 				ES.affiche(cde.toString());
 			else ES.affiche("** Cette commande n'existe pas. **"); 
 		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-	public void editer(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void editer(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande42 cde= selectionCommande(tabCde); 
+			Commande51 cde= selectionCommande(tabCde); 
 			if (cde != null) {
-				GestionUneCommande42 guc= new GestionUneCommande42();
+				GestionUneCommande51 guc= new GestionUneCommande51();
 				guc.menuGeneral(cde,tabArt);
 			} else ES.affiche("** Cette commande n'existe pas. **"); 
 		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-	public void afficherToutesLesCommandes(TableDesCommandes42 tabCde, TableDesArticles51 tabArt) {
+	public void afficherToutesLesCommandes(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) {
 		if (tabCde.taille() != 0) ES.affiche(tabCde.toString(tabArt));
 		else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-	public void facturer(TableDesArticles51 tabArt, TableDesCommandes42 tabCde) throws Abandon {
+	public void facturer(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande42 cde= selectionCommande(tabCde);
+			Commande51 cde= selectionCommande(tabCde);
 			if (cde != null)
 				ES.affiche("\n" + cde.facturer(tabArt) + "\n");
 			else ES.affiche("** Cette commande n'existe pas. **");
 		} else ES.affiche("** Aucune commande **\n");
 	}
 	
-	public Commande42 selectionCommande(TableDesCommandes42 tabCde) throws Abandon {
+	public Commande51 selectionCommande(TableDesCommandes51 tabCde) throws Abandon {
 		ES.affiche(tabCde.cle() + "\n");
 		int numero= ES.saisie("Quelle commande ?", 1);
 		return tabCde.retourner(numero);
 	}
 	
-	public int premierNumeroDispo(TableDesCommandes42 tabCde) {
+	public int premierNumeroDispo(TableDesCommandes51 tabCde) {
 		int numero= 1;
 		while (tabCde.retourner(numero) != null) numero++;
 		return numero;

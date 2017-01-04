@@ -1,21 +1,21 @@
-package Serie42;
+package Serie51;
 import java.util.Vector;
 
 import Serie22.ClientS22;
 import Utils.DateUser;
 
-public class Commande42 implements MesInterfaces.InterfaceStructure<LigneDeCommande42,Integer> {
+public class Commande51 implements MesInterfaces.InterfaceStructure<LigneDeCommande51,Integer> {
 	
-	private Vector<LigneDeCommande42> cde;
+	private Vector<LigneDeCommande51> cde;
 	DateUser dateCommande;
 	int numeroCommande;
 	
-	public Commande42() {
-		cde= new Vector<LigneDeCommande42>();
+	public Commande51() {
+		cde= new Vector<LigneDeCommande51>();
 		dateCommande= new DateUser();
 	}
 	
-	public Commande42(Vector<LigneDeCommande42> cde, DateUser dateCde, int numCde) {
+	public Commande51(Vector<LigneDeCommande51> cde, DateUser dateCde, int numCde) {
 		this.cde= cde;
 		this.dateCommande= dateCde;
 		this.numeroCommande= numCde;
@@ -36,7 +36,7 @@ public class Commande42 implements MesInterfaces.InterfaceStructure<LigneDeComma
 	public String toString() {
 		String st= 	"\n*** VOTRE COMMANDE  Numero " + numeroCommande +
 					" du " + dateCommande + " ***\n";
-		for(LigneDeCommande42 ligne: cde)
+		for(LigneDeCommande51 ligne: cde)
 			st+= ligne.toString() + "\n";
 		return st;
 	}
@@ -53,7 +53,7 @@ public class Commande42 implements MesInterfaces.InterfaceStructure<LigneDeComma
 		return cde.size(); 
 	}
 	
-	public void ajouter(LigneDeCommande42 ldc) {
+	public void ajouter(LigneDeCommande51 ldc) {
 		cde.addElement(ldc);
 	}
 	
@@ -61,15 +61,15 @@ public class Commande42 implements MesInterfaces.InterfaceStructure<LigneDeComma
 		cde.remove((int)code);
 	}
 	
-	public LigneDeCommande42 retourner(Integer code) {
+	public LigneDeCommande51 retourner(Integer code) {
 		for(int i=0; i<cde.size(); i++) {
-			LigneDeCommande42 ldc = cde.get(i);
+			LigneDeCommande51 ldc = cde.get(i);
 			if (ldc.getCode()== code) return ldc;
 		}
 		return null;
 	}
 	
-	public LigneDeCommande42 retournerAvecIndice(int indice) {
+	public LigneDeCommande51 retournerAvecIndice(int indice) {
 		return cde.get(indice);
 	}
 	
