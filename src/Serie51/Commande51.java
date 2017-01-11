@@ -1,31 +1,34 @@
 package Serie51;
-import java.util.Vector;
 
+import java.util.Vector;
+import java.io.Serializable;
 import Serie22.ClientS22;
 import Utils.DateUser;
 
-public class Commande51 implements MesInterfaces.InterfaceStructure<LigneDeCommande51,Integer> {
+public class Commande51 implements MesInterfaces.InterfaceStructure<LigneDeCommande51,Integer>, Serializable {
 	
 	private Vector<LigneDeCommande51> cde;
-	DateUser dateCommande;
-	int numeroCommande;
+	private DateUser dateCommande;
+	private DateUser dateFacturation;
+	private String numeroCommande;
+	private Boolean etatFacture= false;
 	
 	public Commande51() {
 		cde= new Vector<LigneDeCommande51>();
 		dateCommande= new DateUser();
 	}
 	
-	public Commande51(Vector<LigneDeCommande51> cde, DateUser dateCde, int numCde) {
+	public Commande51(Vector<LigneDeCommande51> cde, DateUser dateCde, String numCde) {
 		this.cde= cde;
 		this.dateCommande= dateCde;
 		this.numeroCommande= numCde;
 	}
 	
-	public int getNumCde() {
+	public String getNumCde() {
 		return this.numeroCommande;
 	}
 	
-	public void setNumCde(int num) {
+	public void setNumCde(String num) {
 		numeroCommande= num;
 	}
 	
@@ -44,6 +47,10 @@ public class Commande51 implements MesInterfaces.InterfaceStructure<LigneDeComma
 	public String toString(TableDesArticles51 tabArt) {
 		String st= 	"\n*** VOTRE COMMANDE  Numero " + numeroCommande +
 					" du " + dateCommande + " ***\n";
+		if (etatFacture) st+= "Date de Facturation : " + dateFacturation;
+		else st+= "Commande non facturée";
+		st+= "\n";
+		
 		for(int i=0; i<taille(); i++)
 			st+= (i+1) + "- " + cde.get(i).toStringWithDetails(tabArt) + "\n";
 		return st;

@@ -12,8 +12,9 @@ public class ClientS51 {
 		GestionTableDesArticles51 gta= new GestionTableDesArticles51("CATALOGUE.DAT");
 		tabArt= gta.recupererTab();
 		
-		TableDesCommandes51 tabCde= new TableDesCommandes51();
-		GestionDesCommandes51 gdc= new GestionDesCommandes51();
+		TableDesCommandes51 tabCde;
+		GestionDesCommandes51 gdc= new GestionDesCommandes51("COMMANDES.DAT");
+		tabCde= gdc.recupererTab();
 		
 		int choix;
 		do {
@@ -22,13 +23,14 @@ public class ClientS51 {
 				switch (choix) {
 				case 1: gta.menuGeneral(tabArt, tabCde); break;
 				case 2: gdc.menuGeneral(tabCde, tabArt); break;
-				case 0: ES.affiche("** Sauvegarde du catalogue **\n");gta.sauvegarder(tabArt);break;
 				}
 			} catch (Abandon ab){ 
 				choix= 0;
 			}
 		} while (choix != 0);
-		
+		ES.affiche("** Sauvegarde du catalogue et des commandes **\n");
+		gta.sauvegarder(tabArt);
+		gdc.sauvegarder(tabCde);
 		ES.affiche("Au revoir et à bientôt sur Superette");		
 	}
 	

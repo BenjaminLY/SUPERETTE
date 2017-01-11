@@ -1,7 +1,8 @@
 package Utils;
 import java.util.*;
+import java.io.Serializable;
 
-public class DateUser {
+public class DateUser implements Serializable {
 
   private int jour, mois, annee;
 
@@ -27,6 +28,10 @@ public class DateUser {
 
   public String toString() {
 	  return (jour + "/" + mois + "/" + annee);
+  }
+  
+  public String inversee() {
+	  return ("" + annee + mois + jour);
   }
   
   public static int nbJourMax(int mois, int annee) {

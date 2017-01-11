@@ -1,9 +1,30 @@
 package Serie51;
 
+import Connexions.ConnexionFichier;
 import IPane.ES;
 import MesExceptions.Abandon;
+import Utils.DateUser;
 
 public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<TableDesCommandes51,TableDesArticles51> {
+	
+	ConnexionFichier<TableDesCommandes51> fichTabCommandes;
+	
+	public GestionDesCommandes51(String nomPhysique) {
+		fichTabCommandes= new ConnexionFichier<TableDesCommandes51>(nomPhysique);
+	}
+	
+	public TableDesCommandes51 recupererTab() {
+		TableDesCommandes51 tabCde= fichTabCommandes.lire();
+		if (tabCde == null) {
+			ES.affiche("Création nouveau fichier de commandes ...");
+			tabCde= new TableDesCommandes51();
+		}
+		return tabCde;
+	}
+	
+	public void sauvegarder(TableDesCommandes51 tabCde) {
+		fichTabCommandes.ecrire(tabCde);
+	}
 	
 	public void menuGeneral(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
 		int choix;
@@ -39,7 +60,7 @@ public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<Tab
 		Commande51 cde= new Commande51();
 		
 		// attribution numero de commande et ajout dans stock
-		int numero= premierNumeroDispo(tabCde);
+		String numero= premierNumeroDispo(tabCde);
 		cde.setNumCde(numero);
 		tabCde.ajouter(cde);
 		
@@ -92,13 +113,19 @@ public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<Tab
 	
 	public Commande51 selectionCommande(TableDesCommandes51 tabCde) throws Abandon {
 		ES.affiche(tabCde.cle() + "\n");
-		int numero= ES.saisie("Quelle commande ?", 1);
+		String numero= ES.saisie("Quelle commande ?");
 		return tabCde.retourner(numero);
 	}
 	
-	public int premierNumeroDispo(TableDesCommandes51 tabCde) {
-		int numero= 1;
-		while (tabCde.retourner(numero) != null) numero++;
-		return numero;
+	public String premierNumeroDispo(TableDesCommandes51 tabCde) {
+		DateUser dateDuJour= new DateUser();
+		String resultat= "";
+		int numero= 0;
+		do {
+			numero++;
+			resultat= dateDuJour.inversee() + numero;
+		} while (tabCde.retourner(resultat) != null);
+		
+		return resultat;
 	}
 }

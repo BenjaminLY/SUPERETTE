@@ -36,7 +36,7 @@ public class ConnexionFichier <TypeStructure> {
 		
 		try {
 			// si true alors ecrire a la fin du fichier // si false on ecrase le nouveau
-			FileOutputStream fos= new FileOutputStream(nomPhysique, true);
+			FileOutputStream fos= new FileOutputStream(nomPhysique, false);
 			ObjectOutputStream oos= new ObjectOutputStream(fos );
 			oos.writeObject(tab);
 		} catch (FileNotFoundException e) {

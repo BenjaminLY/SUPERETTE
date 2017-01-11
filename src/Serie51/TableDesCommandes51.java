@@ -1,28 +1,33 @@
 package Serie51;
-import java.util.TreeMap;
 
-public class TableDesCommandes51 implements MesInterfaces.InterfaceStructure<Commande51,Integer> {
+import java.util.TreeMap;
+import java.io.Serializable;
+
+public class TableDesCommandes51 implements MesInterfaces.InterfaceStructure<Commande51,String>, Serializable {
 	
-	private TreeMap<Integer, Commande51> tabCde;
-	
+	private TreeMap<String, Commande51> tabCde;
+
 	public TableDesCommandes51() {
-		tabCde= new TreeMap<Integer, Commande51>();
+		tabCde= new TreeMap<String, Commande51>();
+	}
+	
+	public TreeMap<String, Commande51> getTabCde() {
+		return tabCde;
 	}
 	
 	public void ajouter(Commande51 cde) {
 		if (retourner(cde.getNumCde()) == null) tabCde.put(cde.getNumCde(), cde);
 	}
 	
-	public void supprimer(Integer numCde) {
+	public void supprimer(String numCde) {
 		if (retourner(numCde) != null) tabCde.remove(numCde);
 	}
 	
-	public Commande51 retourner(Integer numCde) {
+	public Commande51 retourner(String numCde) {
 		return tabCde.get(numCde);
 	}
 	
 	public void facturer(TableDesArticles51 tabArt) {
-		// BLY
 		for (Commande51 cde: tabCde.values())
 			cde.facturer(tabArt);
 	}
@@ -36,7 +41,7 @@ public class TableDesCommandes51 implements MesInterfaces.InterfaceStructure<Com
 	
 	public String cle() {
 		String st= 	"\n******* LISTE DES NUMEROS DE COMMANDES *******\n";
-		for(Integer code: tabCde.keySet())
+		for(String code: tabCde.keySet())
 			st+= code + " ** ";
 		return st;
 	}

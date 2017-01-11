@@ -1,8 +1,9 @@
 package Serie51;
 
 import Serie22.ClientS22;
+import java.io.Serializable;
 
-public class LigneDeCommande51 {
+public class LigneDeCommande51 implements Serializable {
 	
 	private int code;
 	private int quantite;
