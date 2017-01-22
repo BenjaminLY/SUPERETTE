@@ -114,4 +114,14 @@ public class DateUser implements Serializable {
 	  }
 	  return "";
   }
+
+  public void ajouterNombreJours(int nb) {
+	  jour= jour + nb;
+	  while (jour > nbJourMax(mois, annee)) {
+		  jour+= jour - nbJourMax(mois, annee);
+		  mois++;
+		  if (mois > 12) { mois= 1; annee++; }
+	  }
+  }
+  
 }

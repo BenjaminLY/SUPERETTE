@@ -22,12 +22,12 @@ public class ConnexionFichier <TypeStructure> {
 			ObjectInputStream ois= new ObjectInputStream(fis);
 			tab= (TypeStructure)ois.readObject();
 		} catch (FileNotFoundException e) {
-			ES.affiche("Lecture d'un fichier inexistant ... ***\n");
+			ES.affiche("** Lecture d'un fichier inexistant ... **\n");
 		} catch (IOException e) {
 			// Pb de lecture
-			ES.affiche("** Problème disk sur la lecture du fichier **\n");
+			ES.affiche("** Problème disque lors de la lecture du fichier **\n");
 		} catch (ClassNotFoundException e) {
-			ES.affiche("Type incohérent ... ***\n");
+			ES.affiche("** Type incohérent ... **\n");
 		}
 		return tab;
 	}
@@ -42,7 +42,7 @@ public class ConnexionFichier <TypeStructure> {
 		} catch (FileNotFoundException e) {
 			// Fichier n'existe pas, alors il va etre créé
 			// en infos, cela n'influe pas sur la creation de ce fichier
-			ES.affiche("Fichier nouveau ... il sera créé ***\n");
+			ES.affiche("** Fichier nouveau ... il sera créé **\n");
 		} catch (IOException e) {
 			// Pb de lecture
 			ES.affiche("** Problème d'écriture sur le fichier **\n");

@@ -1,32 +1,32 @@
-package Serie51;
+package Serie52;
 
 import Connexions.ConnexionFichier;
 import IPane.ES;
 import MesExceptions.Abandon;
 import Utils.DateUser;
 
-public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<TableDesCommandes51,TableDesArticles51> {
+public class GestionDesCommandes52 implements MesInterfaces.InterfaceGestion<TableDesCommandes52,TableDesArticles52> {
 	
-	ConnexionFichier<TableDesCommandes51> fichTabCommandes;
+	ConnexionFichier<TableDesCommandes52> fichTabCommandes;
 	
-	public GestionDesCommandes51(String nomPhysique) {
-		fichTabCommandes= new ConnexionFichier<TableDesCommandes51>(nomPhysique);
+	public GestionDesCommandes52(String nomPhysique) {
+		fichTabCommandes= new ConnexionFichier<TableDesCommandes52>(nomPhysique);
 	}
 	
-	public TableDesCommandes51 recupererTab() {
-		TableDesCommandes51 tabCde= fichTabCommandes.lire();
+	public TableDesCommandes52 recupererTab() {
+		TableDesCommandes52 tabCde= fichTabCommandes.lire();
 		if (tabCde == null) {
-			ES.affiche("Création nouveau fichier de commandes ...");
-			tabCde= new TableDesCommandes51();
+			ES.affiche("Création d'un nouveau fichier de commandes ...");
+			tabCde= new TableDesCommandes52();
 		}
 		return tabCde;
 	}
 	
-	public void sauvegarder(TableDesCommandes51 tabCde) {
+	public void sauvegarder(TableDesCommandes52 tabCde) {
 		fichTabCommandes.ecrire(tabCde);
 	}
 	
-	public void menuGeneral(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void menuGeneral(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
@@ -36,7 +36,6 @@ public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<Tab
 			case 3: afficher(tabCde, tabArt); break; 
 			case 4: editer(tabCde, tabArt); break; 
 			case 5: afficherToutesLesCommandes(tabCde, tabArt); break;
-//			case 6: facturer(tabArt, tabCde); break;
 			case 0: break;
 			}
 		} while (choix != 0);
@@ -50,68 +49,60 @@ public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<Tab
 					"AFFICHER UNE COMMANDE .......................3\n" +
 					"EDITER UNE COMMANDE .........................4\n" +
 					"AFFICHER TOUTES LES COMMANDES ...............5\n" +
-//					"FACTURER UNE COMMANDE .......................6\n" +
 					"FIN .........................................0\n" +
 					"VOTRE CHOIX ....";
 		return ES.saisie(msg, 0, 5);
 	}
 	
-	public void ajouter(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
-		Commande51 cde= new Commande51();
+	public void ajouter(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) throws Abandon {
+		Commande52 cde= new Commande52();
 		
 		// attribution numero de commande et ajout dans stock
 		String numero= premierNumeroDispo(tabCde);
 		cde.setNumCde(numero);
 		tabCde.ajouter(cde);
 		
-		GestionUneCommande51 guc= new GestionUneCommande51();
+		GestionUneCommande52 guc= new GestionUneCommande52();
 		guc.menuGeneral(cde, tabArt);
 		if (cde.taille() == 0) { // Supp commande du stock si vide
 			tabCde.supprimer(numero); 
 		}
 	}
 	
-	public void supprimer(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void supprimer(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande51 cde= selectionCommande(tabCde); 
-			if (cde != null) tabCde.supprimer(cde.getNumCde());
+			Commande52 cde= selectionCommande(tabCde); 
+			if (cde != null && cde.supprimable()) 
+				tabCde.supprimer(cde.getNumCde());
+			else ES.affiche("** Cette commande n'existe pas ou elle n'a pas encore été facturée **");
 		} else ES.affiche("** Aucune commande **"); 
 	}
 	
-	public void afficher(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void afficher(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande51 cde= selectionCommande(tabCde);
+			Commande52 cde= selectionCommande(tabCde);
 			if (cde != null) 
 				ES.affiche(cde.toString());
 			else ES.affiche("** Cette commande n'existe pas. **"); 
 		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-	public void editer(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) throws Abandon {
+	public void editer(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) throws Abandon {
 		if (tabCde.taille() != 0) { 
-			Commande51 cde= selectionCommande(tabCde); 
+			Commande52 cde= selectionCommande(tabCde); 
 			if (cde != null) {
-				GestionUneCommande51 guc= new GestionUneCommande51();
+				GestionUneCommande52 guc= new GestionUneCommande52();
 				guc.menuGeneral(cde,tabArt);
 			} else ES.affiche("** Cette commande n'existe pas. **"); 
 		} else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-	public void afficherToutesLesCommandes(TableDesCommandes51 tabCde, TableDesArticles51 tabArt) {
+	public void afficherToutesLesCommandes(TableDesCommandes52 tabCde, TableDesArticles52 tabArt) {
 		if (tabCde.taille() != 0) ES.affiche(tabCde.toString(tabArt));
 		else ES.affiche("** Aucune commande **\n"); 
 	}
 	
-//	public void facturer(TableDesArticles51 tabArt, TableDesCommandes51 tabCde) throws Abandon {
-//		if (tabCde.taille() != 0) { 
-//			Commande51 cde= selectionCommande(tabCde);
-//			if (cde != null)
-//				ES.affiche("\n" + cde.facturer(tabArt) + "\n");
-//			else ES.affiche("** Cette commande n'existe pas. **");
-//		} else ES.affiche("** Aucune commande **\n");
-//	}
-	
-	public Commande51 selectionCommande(TableDesCommandes51 tabCde) throws Abandon {
+	public Commande52 selectionCommande(TableDesCommandes52 tabCde) throws Abandon {
 		ES.affiche(tabCde.cle() + "\n");
 		String numero= ES.saisie("Quelle commande ?");
 		try {
@@ -121,7 +112,7 @@ public class GestionDesCommandes51 implements MesInterfaces.InterfaceGestion<Tab
 		}
 	}
 	
-	public String premierNumeroDispo(TableDesCommandes51 tabCde) {
+	public String premierNumeroDispo(TableDesCommandes52 tabCde) {
 		DateUser dateDuJour= new DateUser();
 		String resultat= "";
 		int numero= 0;

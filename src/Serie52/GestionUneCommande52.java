@@ -1,11 +1,11 @@
-package Serie51;
+package Serie52;
 
 import IPane.ES;
 import MesExceptions.Abandon;
 
-public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Commande51,TableDesArticles51> {
+public class GestionUneCommande52 implements MesInterfaces.InterfaceGestion<Commande52,TableDesArticles52> {
 	
-	public void menuGeneral(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void menuGeneral(Commande52 cde, TableDesArticles52 tabArt) throws Abandon {
 		int choix;
 		do {
 			choix= menuChoix();
@@ -14,7 +14,6 @@ public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Comm
 			case 2: editer(cde,tabArt); break;
 			case 3: supprimer(cde,tabArt); break;
 			case 4: afficher(cde,tabArt); break;
-//			case 5: facturer(cde,tabArt);
 			}
 		} while (choix != 0);
 	}
@@ -26,16 +25,15 @@ public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Comm
 				"EDITER LA QUANTITE D'UNE LIGNE DE COMMANDE ..2\n" +
 				"SUPPRIMER UNE LIGNE DE COMMANDE .............3\n" +
 				"AFFICHER LA COMMANDE ........................4\n" +
-//				"FACTURER LA COMMANDE ........................5\n" +
 				"FIN .........................................0\n" +
 				"VOTRE CHOIX ....";
 		return ES.saisie(msg, 0, 4);
 	}
 	
-	public void ajouter(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
-		LigneDeCommande51 ldc= saisie(tabArt);
+	public void ajouter(Commande52 cde, TableDesArticles52 tabArt) throws Abandon {
+		LigneDeCommande52 ldc= saisie(tabArt);
 		if (ldc != null) {
-			LigneDeCommande51 ligne= cde.retourner(ldc.getCode());
+			LigneDeCommande52 ligne= cde.retourner(ldc.getCode());
 			if (ligne == null) {
 				cde.ajouter(ldc);
 			} else {
@@ -44,17 +42,17 @@ public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Comm
 		}
 	}
 
-	public void editer(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void editer(Commande52 cde, TableDesArticles52 tabArt) throws Abandon {
 		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
-			LigneDeCommande51 ligne= cde.retournerAvecIndice(number - 1);
-			int quantite= ES.saisie("Quelle quantité ? ", 1); // BLY
+			LigneDeCommande52 ligne= cde.retournerAvecIndice(number - 1);
+			int quantite= ES.saisie("Quelle quantité ? ", 1);
 			ligne.setQuantite(quantite);
 		}
 	}
 	
-	public void supprimer(Commande51 cde, TableDesArticles51 tabArt) throws Abandon {
+	public void supprimer(Commande52 cde, TableDesArticles52 tabArt) throws Abandon {
 		afficher(cde,tabArt);
 		if (cde.taille() != 0) {
 			int number= ES.saisie("Quelle ligne? ", 1, cde.taille());
@@ -64,28 +62,23 @@ public class GestionUneCommande51 implements MesInterfaces.InterfaceGestion<Comm
 		}
 	}
 	
-	public void afficher(Commande51 cde, TableDesArticles51 tabArt) {
+	public void afficher(Commande52 cde, TableDesArticles52 tabArt) {
 		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
 		else ES.affiche(cde.toString(tabArt));
 	}
 	
-//	public void facturer(Commande51 cde, TableDesArticles51 tabArt) {
-//		if (cde.taille() == 0) ES.affiche("*** COMMANDE VIDE !!! ***\n");
-//		else ES.affiche(cde.facturer(tabArt));
-//	}
-	
-	public LigneDeCommande51 saisie(TableDesArticles51 tabArt) throws Abandon {
+	public LigneDeCommande52 saisie(TableDesArticles52 tabArt) throws Abandon {
 		int code= ES.saisie("Quel code? ", 1);
 		ArticleAbstrait<Integer> art= tabArt.retourner(code);
 		
 		if (art != null) {
-			if (art instanceof ArticlePromo51) {
-				String msg= "Article en PROMO !!\nA partir de " + ((ArticlePromo51)art).getQuantiteMini() + " article(s), " +
-							"vous obtenez une réduction de " + ((ArticlePromo51)art).getReduction() + "%\n";
+			if (art instanceof ArticlePromo52) {
+				String msg= "Article en PROMO !!\nA partir de " + ((ArticlePromo52)art).getQuantiteMini() + " article(s), " +
+							"vous obtenez une réduction de " + ((ArticlePromo52)art).getReduction() + "%\n";
 				ES.affiche(msg);
 			}
 			int quantite= ES.saisie("Quelle quantité ? ", 1);
-			return new LigneDeCommande51(code,quantite);
+			return new LigneDeCommande52(code,quantite);
 		} else {
 			ES.affiche(" *** Ce code n'existe pas ? ");
 			return null;
